@@ -5,20 +5,24 @@ var select =document.getElementById("food");
 var number=document.getElementById("numbers");
 var j=0;
 var k;
-var z;
+var z=0;
 var q;
 var m;
 var option;
-var inde;
+var ind;
 var p;
 number.style.display="none";
 var enter=document.getElementById("enter");
 var food={select:0 ,Dosa:6 , Idli:5,Roti:7 ,poori:6, Rice:8 ,pongal:9,Chamiya:10}
+
   function savefunction(){
+if(enter.value.length!=0){
+  
   var option=document.createElement("option");
+   
   option.text=enter.value;
     select.add(option);
-    var pq=enter.value;
+   
     var carbo=document.getElementById('carbo').value;
     var fat=document.getElementById('fat').value;
     var protien=document.getElementById('protien').value;
@@ -26,9 +30,12 @@ var food={select:0 ,Dosa:6 , Idli:5,Roti:7 ,poori:6, Rice:8 ,pongal:9,Chamiya:10
     var gncarbo= + carbo;
     var gnfat= + fat;
     m=gnprotien*2 + gnfat*4 + gncarbo*3;
-    food.pq=m;
+    
   
-   }
+    food[enter.value]=m;
+    
+  
+   }}
   
 var option1=document.createElement("option");
 
@@ -55,10 +62,8 @@ var option1=document.createElement("option");
 
 
 function appear(y){
-  document.getElementById('enter').value="";
-    document.getElementById('protien').value="";
-    document.getElementById('carbo').value="";
-    document.getElementById('fat').value="";  
+
+    console.log(food);
     if(select.selectedIndex!=0){
       number.style.display="block";
     }
@@ -87,7 +92,7 @@ var weight= + gnweight;
         if(BMI<18)
         {
            alert("underweight");
-           calories.textContent=6
+           calories.textContent=2000
          }
         else if(BMI>18 && BMI <24)
         {
@@ -117,32 +122,38 @@ var weight= + gnweight;
      {  
        var gnnumber= + number;
        k=select.selectedIndex;
+      
        var versatile=rock(k,gnnumber);
      }
     select = document.getElementById('food');
-    
+  
     type.selectedIndex=0;
     enter.value="" 
    
     document.getElementById('numbers').value = "";
     document.getElementById('carbo').value="";
     document.getElementById('fat').value="";
+    document.getElementById('protien').value="";
  }
 function rock(ind, quantity)
 {    
   var table=document.getElementById('ordered');
   var na=select[ind].text;
   this.quantity=quantity;
-  
-  
+  this.ind=ind;
+
+  var t= food[Object.keys(food)[ind]];
+
   if(select.selectedIndex!=0 && quantity!=0){
   var row = table.insertRow(1);
   var cel1=row.insertCell(0);
   var cel2=row.insertCell(1);
   cel1.innerHTML=na;
-  this.ind=ind;
+  
+  console.log(ind);
   cel2.innerHTML=quantity;
-  var t= food[Object.keys(food)[ind]];
+  
+  
   x=x+quantity*t;
   a.textContent=x;
   
