@@ -120,7 +120,7 @@ var weight= + gnweight;
        var versatile=rock(k,gnnumber);
      }
     select = document.getElementById('food');
-    food.selectedIndex=0;
+    
     type.selectedIndex=0;
     enter.value="" 
    
